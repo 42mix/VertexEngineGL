@@ -36,9 +36,9 @@ impl VxCtx {
         self.glfw_ctx.poll_events();
     }
 
-    pub fn handle_events<F>(&mut self, handler: F)
+    pub fn handle_events<F>(&mut self, mut handler: F)
     where
-        F: Fn(&mut Window, (f64, WindowEvent)),
+        F: FnMut(&mut Window, (f64, WindowEvent)),
     {
         for event in glfw::flush_messages(&self.window_events) {
             handler(&mut self.window, event);
