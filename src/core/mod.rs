@@ -2,7 +2,7 @@ pub mod errors;
 
 use crate::core::errors::InitError;
 use crate::windowing::{WinMode, WindowProperties};
-use glfw::{Context, WindowEvent, WindowMode};
+use glfw::{Context, Window, WindowEvent, WindowMode};
 use std::sync::mpsc::Receiver;
 
 pub struct VxCtx {
@@ -34,6 +34,15 @@ impl VxCtx {
 
     pub fn poll_events(&mut self) {
         self.glfw_ctx.poll_events();
+    }
+
+    pub fn handle_events<F>(&mut self, handler: F)
+    where
+        F: Fn(&mut Window, (f64, WindowEvent)),
+    {
+        for event in glfw::flush_messages(&self.window_events) {
+            handler(&mut self.window, event);
+        }
     }
 }
 
