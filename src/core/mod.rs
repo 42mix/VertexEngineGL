@@ -41,7 +41,7 @@ pub fn init(win_properties: WindowProperties) -> Result<VxCtx, InitError> {
     let mut glfw = glfw::init::<()>(None)?;
 
     // Create a windowed mode window and its OpenGL context
-    let (mut window, events) = match win_properties.win_mode {
+    let result = match win_properties.win_mode {
         WinMode::Windowed => glfw.create_window(
             win_properties.width,
             win_properties.height,
@@ -56,8 +56,11 @@ pub fn init(win_properties: WindowProperties) -> Result<VxCtx, InitError> {
                 WindowMode::FullScreen(monitor.unwrap()),
             )
         }),
-    }
-    .expect("Cannot create window");
+    };
+    let (mut window, events) = match result {
+        Some(v) => v,
+        None => return Err(InitError::WindowCreationFailed),
+    };
 
     // Make the window's context current
     window.make_current();
