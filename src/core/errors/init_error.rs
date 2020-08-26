@@ -1,9 +1,9 @@
-/// The errors that can happen during [`crate::init`]
+/// The errors that can happen during [crate::core::init]
 #[derive(Debug)]
 pub enum InitError {
-    /// When [`glfw::init`] failed, with the [`glfw::InitError`] that caused it
+    /// When [glfw::init] failed, with the [glfw::InitError] that caused it
     GlfwInitError(glfw::InitError),
-    /// When [`glfw::Glfw::create_window`] failed
+    /// When [glfw::Glfw::create_window] failed
     WindowCreationFailed,
 }
 
