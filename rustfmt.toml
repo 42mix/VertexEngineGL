@@ -1,0 +1,3 @@
+# Try to avoid very long lines because of intellij-rust's
+# inlays that may take a lot of space
+max_width = 80
