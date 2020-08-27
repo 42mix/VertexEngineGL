@@ -33,7 +33,7 @@ impl VxCtx {
     /// # Example
     /// ```no_run
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;    
+    /// #     use vertex_engine::prelude::*;
     ///     use vertex_engine::{
     ///         windowing::{WindowProperties, WinMode},
     ///         core::init
@@ -52,8 +52,8 @@ impl VxCtx {
     /// Swaps the window buffers. This function should be called every frame.
     /// # Example
     /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {    
-    /// #     use vertex_engine::prelude::*;    
+    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /// #     use vertex_engine::prelude::*;
     ///     use vertex_engine::{
     ///         windowing::{WindowProperties, WinMode},
     ///         core::init
@@ -73,8 +73,8 @@ impl VxCtx {
     /// Polls the events from glfw.
     /// # Example
     /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {    
-    /// #     use vertex_engine::prelude::*;    
+    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /// #     use vertex_engine::prelude::*;
     ///     use vertex_engine::{
     ///         windowing::{WindowProperties, WinMode},
     ///         core::init
@@ -94,7 +94,7 @@ impl VxCtx {
     /// # Example
     /// ```no_run
     /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;    
+    /// #     use vertex_engine::prelude::*;
     ///     use vertex_engine::{
     ///         windowing::{WindowProperties, WinMode},
     ///         core::init
@@ -133,7 +133,7 @@ impl VxCtx {
 /// Create a context with a 1024x720 window:
 /// ```no_run
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-/// #     use vertex_engine::prelude::*;    
+/// #     use vertex_engine::prelude::*;
 ///     use vertex_engine::{
 ///         windowing::{WindowProperties, WinMode},
 ///         core::init
@@ -146,7 +146,7 @@ impl VxCtx {
 /// Create a context with a fullscreen window, at 1600x1024:
 /// ```no_run
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-/// #     use vertex_engine::prelude::*;    
+/// #     use vertex_engine::prelude::*;
 ///     use vertex_engine::{
 ///         windowing::{WindowProperties, WinMode},
 ///         core::init

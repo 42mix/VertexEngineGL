@@ -1,0 +1,19 @@
+name: build
+
+on:
+  push:
+    branches: [ rust_impl ]
+  pull_request:
+    branches: [ rust_impl ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: build
+        run: cargo test; cargo test --examples
