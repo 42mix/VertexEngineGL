@@ -15,3 +15,8 @@ pub mod core;
 pub mod coregl;
 pub mod prelude;
 pub mod windowing;
+
+#[cfg(feature = "opengl")]
+pub mod opengl;
+#[cfg(feature = "vulkan")]
+pub mod vulkan;
