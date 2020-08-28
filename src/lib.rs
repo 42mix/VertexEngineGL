@@ -12,5 +12,6 @@ extern crate glfw;
 extern crate vulkano;
 
 pub mod core;
+pub mod coregl;
 pub mod prelude;
 pub mod windowing;

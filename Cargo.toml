@@ -11,6 +11,11 @@ version = "^0.39"
 
 [dependencies.vulkano]
 version = "^0.19"
+optional = true
 
-[dependencies.vk-sys]
-version = "^0.5"
+
+[features]
+default = ["vulkan"]
+
+vulkan = ["vulkano"]
+opengl = []
