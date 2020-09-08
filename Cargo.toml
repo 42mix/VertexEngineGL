@@ -9,5 +9,4 @@ edition = "2018"
 [dependencies]
 vulkano = "^0.19"
 vulkano-shaders = "^0.18"
-vulkano-win = "^0.19"
-winit = "^0.22"
+glfw = {version = "^0.39", features = ["vulkan"]}

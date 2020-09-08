@@ -1,18 +1,34 @@
-struct Application {}
+use vertex_engine::events::Event;
+use vertex_engine::window::{WinMode, Window, WindowProperties};
+
+struct Application {
+    window: vertex_engine::window::Window,
+}
 
 impl Application {
     fn new() -> Self {
-        Application {}
+        Application {
+            window: Window::new(WindowProperties::new(
+                1024,
+                728,
+                "SandBox",
+                WinMode::Windowed,
+            )),
+        }
     }
 }
 
 impl vertex_engine::VertexEngineApplication for Application {
-    fn run(&mut self) {
+    fn on_update(&mut self) {
         assert!(true);
+    }
+
+    fn get_window(&mut self) -> &mut Window {
+        &mut self.window
     }
 }
 
 #[test]
 fn main_test() {
-    vertex_engine::run(&mut Application::new());
+    vertex_engine::run_application(&mut Application::new());
 }
