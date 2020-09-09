@@ -13,7 +13,8 @@ impl Application {
                 728,
                 "SandBox",
                 WinMode::Windowed,
-            )),
+            ))
+            .unwrap(),
         }
     }
 

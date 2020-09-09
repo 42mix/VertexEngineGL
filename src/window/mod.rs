@@ -1,3 +1,4 @@
+use crate::errors::InitError;
 use crate::events::Event;
 
 use std::sync::mpsc::Receiver;
@@ -35,45 +36,50 @@ pub struct Window {
 }
 
 impl Window {
-    pub fn new(properties: WindowProperties) -> Self {
+    pub fn new(properties: WindowProperties) -> Result<Self, InitError> {
         let mut glfw = glfw::init(glfw::FAIL_ON_ERRORS).unwrap();
 
         glfw.window_hint(glfw::WindowHint::ClientApi(
             glfw::ClientApiHint::NoApi,
         ));
 
-        let (mut window, events) = glfw
-            .create_window(
-                300,
-                300,
-                "Hello this is window",
+        // Create a windowed mode window and its OpenGL context
+        let result = match properties.win_mode {
+            WinMode::Windowed => glfw.create_window(
+                properties.width,
+                properties.height,
+                &properties.title[..],
                 glfw::WindowMode::Windowed,
-            )
-            .expect("Failed to create GLFW window.");
+            ),
+            WinMode::Fullscreen => {
+                glfw.with_primary_monitor(|param_glfw, monitor| {
+                    param_glfw.create_window(
+                        properties.width,
+                        properties.height,
+                        &properties.title[..],
+                        glfw::WindowMode::FullScreen(monitor.unwrap()),
+                    )
+                })
+            }
+        };
+        let (mut window, events) = match result {
+            Some(v) => v,
+            None => return Err(InitError::WindowCreationFailed),
+        };
 
         window.set_all_polling(true);
 
-        Self {
+        Ok(Self {
             glfw,
             events,
             internal_window: window,
-        }
+        })
     }
 
     // Events and callbacks
 
     pub fn poll_events(&mut self) {
         self.glfw.poll_events();
-
-        for (_, event) in glfw::flush_messages(&self.events) {
-            // println!("{:?}", event);
-            match event {
-                glfw::WindowEvent::Close => {
-                    //
-                }
-                _ => {}
-            }
-        }
     }
 }
 
