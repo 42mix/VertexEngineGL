@@ -16,6 +16,8 @@ impl Application {
             )),
         }
     }
+
+    fn on_event() {}
 }
 
 impl vertex_engine::VertexEngineApplication for Application {
@@ -25,6 +27,10 @@ impl vertex_engine::VertexEngineApplication for Application {
 
     fn get_window(&mut self) -> &mut Window {
         &mut self.window
+    }
+
+    fn is_running(&self) -> bool {
+        true
     }
 }
 

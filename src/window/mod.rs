@@ -1,5 +1,7 @@
 use crate::events::Event;
 
+use std::sync::mpsc::Receiver;
+
 /// The properties to open the window with.
 pub struct WindowProperties {
     width: u32,
@@ -27,6 +29,8 @@ impl WindowProperties {
 }
 
 pub struct Window {
+    glfw: glfw::Glfw,
+    events: Receiver<(f64, glfw::WindowEvent)>,
     internal_window: glfw::Window,
 }
 
@@ -38,7 +42,7 @@ impl Window {
             glfw::ClientApiHint::NoApi,
         ));
 
-        let (mut window, _) = glfw
+        let (mut window, events) = glfw
             .create_window(
                 300,
                 300,
@@ -47,8 +51,28 @@ impl Window {
             )
             .expect("Failed to create GLFW window.");
 
+        window.set_all_polling(true);
+
         Self {
+            glfw,
+            events,
             internal_window: window,
+        }
+    }
+
+    // Events and callbacks
+
+    pub fn poll_events(&mut self) {
+        self.glfw.poll_events();
+
+        for (_, event) in glfw::flush_messages(&self.events) {
+            // println!("{:?}", event);
+            match event {
+                glfw::WindowEvent::Close => {
+                    //
+                }
+                _ => {}
+            }
         }
     }
 }
