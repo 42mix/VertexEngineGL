@@ -17,8 +17,6 @@ impl Application {
             .unwrap(),
         }
     }
-
-    fn on_event() {}
 }
 
 impl vertex_engine::VertexEngineApplication for Application {
@@ -32,6 +30,10 @@ impl vertex_engine::VertexEngineApplication for Application {
 
     fn is_running(&self) -> bool {
         true
+    }
+
+    fn on_event(&mut self, event: Event) {
+        println!("Event: {:?}", event);
     }
 }
 
