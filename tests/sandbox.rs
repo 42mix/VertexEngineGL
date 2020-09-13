@@ -1,8 +1,9 @@
-use vertex_engine::events::Event;
+use vertex_engine::events::event_types::Event;
 use vertex_engine::window::{WinMode, Window, WindowProperties};
 
 struct Application {
     window: vertex_engine::window::Window,
+    running: bool,
 }
 
 impl Application {
@@ -15,6 +16,7 @@ impl Application {
                 WinMode::Windowed,
             ))
             .unwrap(),
+            running: true,
         }
     }
 }
@@ -29,11 +31,16 @@ impl vertex_engine::VertexEngineApplication for Application {
     }
 
     fn is_running(&self) -> bool {
-        true
+        self.running
     }
 
     fn on_event(&mut self, event: Event) {
         println!("Event: {:?}", event);
+
+        match event {
+            Event::WindowCloseEvent => self.running = false,
+            _ => {}
+        }
     }
 }
 

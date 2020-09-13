@@ -1,5 +1,5 @@
 use crate::errors::InitError;
-use crate::events::{Event, EventTypes};
+use crate::events::event_types::{self, Event};
 
 use std::sync::mpsc::Receiver;
 
@@ -79,112 +79,90 @@ impl Window {
     }
 
     /// Returns whether the user requested the window to close(for example clicking on the X button).
-    /// # Example
-    /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;
-    ///     use vertex_engine::{
-    ///         windowing::{WindowProperties, WinMode},
-    ///         core::init
-    ///     };
-    /// let mut context = init(WindowProperties::new(1024, 720, "title here", WinMode::Windowed))?;
-    ///     while !context.window_close_requested() {
-    ///         context.poll_events();
-    ///     }
-    /// #     Ok(())
-    /// # }
-    /// ```
     pub fn window_close_requested(&self) -> bool {
         self.internal_window.should_close()
     }
 
     /// Swaps the window buffers. This function should be called every frame.
-    /// # Example
-    /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;
-    ///     use vertex_engine::{
-    ///         windowing::{WindowProperties, WinMode},
-    ///         core::init
-    ///     };
-    /// #     let mut context = init(WindowProperties::new(1024, 720, "title here", WinMode::Windowed))?;
-    ///     while !context.window_close_requested() {
-    ///         context.poll_events();
-    ///         context.swap_buffers();
-    ///     }
-    /// #     Ok(())
-    /// # }
-    /// ```
     pub fn swap_buffers(&mut self) {
         self.internal_window.swap_buffers()
     }
 
-    /// Polls the events from glfw.
-    /// # Example
-    /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;
-    ///     use vertex_engine::{
-    ///         windowing::{WindowProperties, WinMode},
-    ///         core::init
-    ///     };
-    /// #     let mut context = init(WindowProperties::new(1024, 720, "title here", WinMode::Windowed))?;
-    ///     while !context.window_close_requested() {
-    ///         context.poll_events();
-    ///     }
-    /// #     Ok(())
-    /// # }
-    /// ```
-    pub fn poll_events(&mut self) {
+    /// Polls and returns events that occurred since the last poll from glfw.
+    pub fn flush_events(&mut self) -> Vec<Event> {
         self.glfw.poll_events();
-    }
-
-    /// Handles all events received on the window, by calling `handler` on each of them.
-    /// # Example
-    /// ```no_run
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #     use vertex_engine::prelude::*;
-    ///     use vertex_engine::{
-    ///         windowing::{WindowProperties, WinMode},
-    ///         core::init
-    ///     };
-    ///     use glfw::{Key, Action};
-    /// #     let mut context = init(WindowProperties::new(1024, 720, "title here", WinMode::Windowed))?;
-    ///     while !context.window_close_requested() {
-    ///         context.poll_events();
-    ///         context.handle_events(|window, (_, event)| {
-    ///             match event {
-    ///                 glfw::WindowEvent::Key(Key::Escape, _, Action::Press, _) => {
-    ///                     window.set_should_close(true)
-    ///                 }
-    ///                 _ => {}
-    ///             }
-    ///         });
-    ///         context.swap_buffers();
-    ///     }
-    /// #     Ok(())
-    /// # }
-    /// ```
-    pub fn handle_events<F>(&mut self, mut handler: F)
-    where
-        F: FnMut(Event),
-    {
+        let mut events = Vec::new();
         for (_, event) in glfw::flush_messages(&self.events) {
             match event {
                 glfw::WindowEvent::Key(key, scan_code, action, modifiers) => {
                     match action {
-                        glfw::Action::Press => handler(Event::KeyPressEvent(
-                            EventTypes::KeyPressContainer { key, count: 0 },
-                        )),
+                        glfw::Action::Press => {
+                            events.push(Event::KeyPressEvent(
+                                event_types::KeyPressContainer {
+                                    key,
+                                    count: 0,
+                                },
+                            ))
+                        }
                         glfw::Action::Release => {
-                            handler(Event::KeyReleaseEvent(key))
+                            events.push(Event::KeyReleaseEvent(key))
                         }
                         _ => {}
+                    }
+                }
+                glfw::WindowEvent::Char(c) => {
+                    events.push(Event::KeyCharInputEvent(c))
+                }
+                glfw::WindowEvent::MouseButton(button, action, modifiers) => {
+                    match action {
+                        glfw::Action::Press => {
+                            events.push(Event::MouseClickEvent(button))
+                        }
+                        glfw::Action::Release => {
+                            events.push(Event::MouseReleaseEvent(button))
+                        }
+                        _ => {}
+                    }
+                }
+                glfw::WindowEvent::Scroll(offset_x, offset_y) => {
+                    events.push(Event::MouseScrollEvent(
+                        event_types::MouseScrollContainer {
+                            offset_x,
+                            offset_y,
+                        },
+                    ))
+                }
+                glfw::WindowEvent::CursorPos(pos_x, pos_y) => {
+                    events.push(Event::MouseMoveEvent(
+                        event_types::CursorPositionContainer { pos_x, pos_y },
+                    ))
+                }
+                glfw::WindowEvent::Size(width, height) => {
+                    events.push(Event::WindowResizeEvent(
+                        event_types::WindowSizeContainer { width, height },
+                    ))
+                }
+                glfw::WindowEvent::Close => {
+                    events.push(Event::WindowCloseEvent)
+                }
+                glfw::WindowEvent::Focus(state) => {
+                    if state == true {
+                        events.push(Event::WindowGainedFocusEvent);
+                    } else {
+                        events.push(Event::WindowLostFocusEvent);
+                    }
+                }
+                glfw::WindowEvent::CursorEnter(state) => {
+                    if state == true {
+                        events.push(Event::WindowCursorEnteredEvent);
+                    } else {
+                        events.push(Event::WindowCursorLeftEvent);
                     }
                 }
                 _ => {}
             }
         }
+        events
     }
 }
 
