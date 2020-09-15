@@ -1,19 +1,19 @@
-use vertex_engine::events::event_types::Event;
-use vertex_engine::window::{WinMode, Window, WindowProperties};
+use vertex_engine::graphics::events::Event;
+use vertex_engine::graphics::window::{self, Window};
 
 struct Application {
-    window: vertex_engine::window::Window,
+    window: Window,
     running: bool,
 }
 
 impl Application {
     fn new() -> Self {
         Application {
-            window: Window::new(WindowProperties::new(
+            window: Window::new(&window::Properties::new(
                 1024,
                 728,
                 "SandBox",
-                WinMode::Windowed,
+                window::Mode::Windowed,
             ))
             .unwrap(),
             running: true,
@@ -38,7 +38,7 @@ impl vertex_engine::VertexEngineApplication for Application {
         println!("Event: {:?}", event);
 
         match event {
-            Event::WindowCloseEvent => self.running = false,
+            Event::WindowClose => self.running = false,
             _ => {}
         }
     }

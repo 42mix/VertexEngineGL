@@ -11,19 +11,16 @@
 extern crate glfw;
 extern crate vulkano;
 
-pub mod errors;
-pub mod events;
-pub mod prelude;
-pub mod window;
+pub mod graphics;
 
 pub trait VertexEngineApplication {
     fn on_update(&mut self);
 
-    fn get_window(&mut self) -> &mut window::Window;
+    fn get_window(&mut self) -> &mut graphics::window::Window;
 
     fn is_running(&self) -> bool;
 
-    fn on_event(&mut self, event: events::event_types::Event);
+    fn on_event(&mut self, event: graphics::events::Event);
 }
 
 pub fn run_application(application: &mut impl VertexEngineApplication) {
