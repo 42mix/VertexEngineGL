@@ -44,7 +44,6 @@ impl vertex_engine::VertexEngineApplication for Application {
     }
 }
 
-#[test]
-fn main_test() {
+fn main() {
     vertex_engine::run_application(&mut Application::new());
 }

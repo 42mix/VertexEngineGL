@@ -11,5 +11,3 @@ vulkano = "^0.19"
 vulkano-shaders = "^0.18"
 glfw = {version = "^0.39", features = ["vulkan"]}
 
-[[test]]
-name = "sandbox"
