@@ -44,14 +44,12 @@ namespace SandBox
 
         m_Shader.reset(Vertex::Shader::Create(vertex_source, fragment_source, layout));
 
-#ifndef VX_RENDER_API_VULKAN
         m_ArchTexture.reset(Vertex::Texture2D::Create("res/arch.png"));
         m_VETexture.reset(Vertex::Texture2D::Create("res/VertexEngine.png"));
 
         m_Shader->Bind();
 
         m_UniformBuffer.reset(Vertex::UniformBuffer::Create(uniform_block_layout, 0));
-#endif
 
         Vertex::Logger::Info("Initialized test layer");
     }
@@ -81,7 +79,6 @@ namespace SandBox
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-#ifndef VX_RENDER_API_VULKAN
         m_UniformBuffer->Bind();
 
         m_VETexture->Bind();
@@ -110,11 +107,6 @@ namespace SandBox
                                   Vertex::GetSizeOfShaderDataType(Vertex::ShaderDataType::Mat4));
 
         Vertex::Renderer::Submit(m_VertexArray, m_UniformBuffer, m_Shader);
-#else
-
-        Vertex::Renderer::Submit(m_VertexArray, m_Shader);
-
-#endif
 
         Vertex::Renderer::EndScene();
 
@@ -124,12 +116,10 @@ namespace SandBox
 
     void ExampleLayer::OnGUIUpdate(const Vertex::TimeDelta delta_time)
     {
-#ifndef VX_RENDER_API_VULKAN
         ImGui::Begin("Renderer");
         ImGui::Text("%s", Vertex::Renderer::GetRendererInfo().c_str());
         ImGui::Text("\n %.2f", m_AvgFrameRate);
         ImGui::End();
-#endif
     }
 }
 

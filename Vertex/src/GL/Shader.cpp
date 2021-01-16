@@ -1,11 +1,6 @@
 #include "Shader.h"
 
-#if defined(VX_RENDER_API_VULKAN)
-    #include "Vulkan/VulkanShader.h"
-#else
-    #include "OpenGL/OpenGLShader.h"
-// ... per rendering API
-#endif
+#include "OpenGL/OpenGLShader.h"
 
 #include <fstream>
 
@@ -95,23 +90,8 @@ namespace Vertex
         return buffer;
     }
 
-    // clang-format off
-
-#if defined(VX_RENDER_API_VULKAN)
-
-    Shader* Shader::Create(std::vector<char>& vertex_src, std::vector<char>& fragment_src, const BufferLayout vertex_layout)
-    {
-        return new VulkanShader(vertex_src, fragment_src, vertex_layout);
-    }
-
-#else
-
     Shader* Shader::Create(std::vector<char>& vertex_src, std::vector<char>& fragment_src, const BufferLayout vertex_layout)
     {
         return new OpenGLShader(vertex_src, fragment_src);
     }
-
-#endif
-
-    // clang-format on
 }
