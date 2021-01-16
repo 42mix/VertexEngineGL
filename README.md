@@ -1,34 +1,12 @@
 # Vertex Engine
 
 [![build](https://github.com/VertexEngine/VertexEngine/workflows/build/badge.svg)](#)
-[![License](https://img.shields.io/github/license/VertexEngine/VertexEngine?color=blue)](https://github.com/VertexEngine/VertexEngine/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/42mix/VertexEngineGL?color=blue)](https://github.com/42mix/VertexEngineGL/blob/master/LICENSE)
 
-A powerful and modern C++ based game engine, currently in early development.
-
-**Note:** Development of this branch has stopped, as we're currently trying to port the engine to Rust.
-
-## Index
-This README file is split into multiple sections:
-* [Support](https://github.com/VertexEngine/VertexEngine#support)
-* [Roadmap](https://github.com/VertexEngine/VertexEngine#features-to-come)
-* [Contributing](https://github.com/VertexEngine/VertexEngine#contributing)
-* [Authors and Acknowledgements](https://github.com/VertexEngine/VertexEngine#authors)
+A powerful OpenGL based game engine, currently in early development.
 
 ## Why another game engine?
-Well, this project is mainly for learning purposes. The aim is to make a powerful, flexible and lightweight game engine, since I haven't really found any exisitng Engines that I like.
-
-## Supported platforms and rendering APIs
-| Platform | Rendering API                   |
-|----------|---------------------------------|
-| Windows  | OpenGL 4.5+                     |
-| Linux    | OpenGL 4.5+, Vulkan (partial)   |
-
-*Vulkan is still being added to VertexEngine, hence all OpenGL features may not be supported*
-*Windows support for Vulkan will be added once Linux fully supports it*
-
-## Support
-You can join the official Vertex Engine Discord Server, to ask for help or make a feature request.
-[![Vertex Engine discord server](https://discord.com/api/guilds/698193704032141402/embed.png?style=banner2)](https://discord.gg/hA5kHnK)
+Well, this project is mainly for learning purposes. The aim is to make a powerful, flexible and lightweight game engine, since I haven't really found any exisitng Engines that I like. This fork aims to get OpenGL on [VertexEngine](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) completely.
 
 ## Build
 Pre-made build scripts are provided for Windows and Linux in the `scripts` directory. The build scripts **must be run from within that directory.**
@@ -37,11 +15,11 @@ Pre-made build scripts are provided for Windows and Linux in the `scripts` direc
 * Scene system
 * 3D Rendering
 * Visual editor
-* Support for mac, mobile, and consoles
-* Support for Vulkan, and Metal
+* ~~Support for mac, mobile, and consoles~~
+* ~~Support for Vulkan, and Metal~~
 
 ## Contributing
-Please read [CONTRIBUTING](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) before opening a Pull Request.
+~~Please read [CONTRIBUTING](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) before opening a Pull Request.~~
 
 ## Authors
 * [42mix](https://github.com/42mix) - Initial work
