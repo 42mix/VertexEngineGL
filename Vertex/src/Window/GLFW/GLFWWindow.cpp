@@ -1,4 +1,4 @@
-#include "LinuxWindow.h"
+#include "GLFWWindow.h"
 
 #include "Core/Event/KeyEvent.h"
 #include "Core/Event/MouseEvent.h"
@@ -166,7 +166,7 @@ namespace Vertex
         }
     } // namespace GLFWInputCallbacks
 
-    LinuxWindow::LinuxWindow(WindowProperties properties) : m_Data(properties)
+    GLFWWindow::GLFWWindow(WindowProperties properties) : m_Data(properties)
     {
         CoreLogger::Get()->info("Creating window {0}...", m_Data.title);
 
@@ -216,26 +216,26 @@ namespace Vertex
         SetVSync(properties.v_sync);
     }
 
-    LinuxWindow::~LinuxWindow() { ShutDown(); }
+    GLFWWindow::~GLFWWindow() { ShutDown(); }
 
-    void LinuxWindow::ShutDown()
+    void GLFWWindow::ShutDown()
     {
         glfwDestroyWindow(m_Window); // we may want to shutdown before the window's scope is over
     }
 
-    void LinuxWindow::OnUpdate(TimeDelta delta_time)
+    void GLFWWindow::OnUpdate(TimeDelta delta_time)
     {
         glfwPollEvents();
         m_Context->SwapBuffers();
     }
 
-    void LinuxWindow::OnEvent(Event& event)
+    void GLFWWindow::OnEvent(Event& event)
     {
         EventHandler handler(event);
-        handler.Dispatch<WindowResizeEvent>(VX_BIND_FUNC_1(LinuxWindow::OnWindowResizeEvent));
+        handler.Dispatch<WindowResizeEvent>(VX_BIND_FUNC_1(GLFWWindow::OnWindowResizeEvent));
     }
 
-    bool LinuxWindow::OnWindowResizeEvent(WindowResizeEvent& event)
+    bool GLFWWindow::OnWindowResizeEvent(WindowResizeEvent& event)
     {
         m_Context->SetViewPort(0, 0, event.GetWidth(), event.GetHeight());
         return false; // for now

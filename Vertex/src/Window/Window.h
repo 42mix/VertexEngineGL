@@ -12,7 +12,7 @@
 
 namespace Vertex
 {
-    // utility class
+    /// Defines properties of a window
     struct WindowProperties
     {
         bool         v_sync;
@@ -28,6 +28,7 @@ namespace Vertex
         }
     };
 
+    /// Interface to platform-specific windowing API
     class Window
     {
     public:

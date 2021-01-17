@@ -4,6 +4,7 @@
 
 namespace Vertex
 {
+    /// API for handling window input
     class VX_PUBLIC_API Input
     {
     public:

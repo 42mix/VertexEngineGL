@@ -1,9 +1,9 @@
-#include "LinuxInput.h"
+#include "GLFWInput.h"
 
 namespace Vertex
 {
 
-    bool LinuxInput::IsKeyPressedImpl(int key)
+    bool GLFWInput::IsKeyPressedImpl(int key)
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -12,7 +12,7 @@ namespace Vertex
         return (state == GLFW_PRESS || state == GLFW_REPEAT);
     }
 
-    bool LinuxInput::IsMouseButtonPressedImpl(int button)
+    bool GLFWInput::IsMouseButtonPressedImpl(int button)
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -21,7 +21,7 @@ namespace Vertex
         return state == GLFW_PRESS;
     }
 
-    float LinuxInput::GetMouseXImpl()
+    float GLFWInput::GetMouseXImpl()
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -32,7 +32,7 @@ namespace Vertex
         return (float)xpos;
     }
 
-    float LinuxInput::GetMouseYImpl()
+    float GLFWInput::GetMouseYImpl()
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 

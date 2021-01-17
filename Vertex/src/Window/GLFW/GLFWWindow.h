@@ -4,15 +4,15 @@
 
 #include "Window/Input.h"
 
-#include "LinuxInput.h"
+#include "GLFWInput.h"
 
 namespace Vertex
 {
-    class LinuxWindow : public Window
+    class GLFWWindow : public Window
     {
     public:
-        LinuxWindow(const WindowProperties properties = WindowProperties());
-        ~LinuxWindow();
+        GLFWWindow(const WindowProperties properties = WindowProperties());
+        ~GLFWWindow();
 
         void OnEvent(Event& event) override;
 

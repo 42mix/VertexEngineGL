@@ -7,7 +7,7 @@
 namespace Vertex
 {
 
-    class WindowsInput : public Input
+    class GLFWInput : public Input
     {
     protected:
         bool IsKeyPressedImpl(int key) override;

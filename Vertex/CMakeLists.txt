@@ -50,8 +50,8 @@ add_subdirectory(deps/glad)
 add_subdirectory(deps/imgui)
 
 if (WIN32)
-    file(GLOB_RECURSE VX_PLATFORM_HEADERS src/Window/Windows/*.h)
-    file(GLOB_RECURSE VX_PLATFORM_SOURCES src/Window/Windows/*.cpp)
+    file(GLOB_RECURSE VX_PLATFORM_HEADERS src/Window/GLFW/*.h)
+    file(GLOB_RECURSE VX_PLATFORM_SOURCES src/Window/GLFW/*.cpp)
 
     find_package(OpenGL REQUIRED) # OpenGL
     set(GRAPHICS_LIB_INCLUDES ${OPENGL_INCLUDE_DIR} deps/glad/include)
@@ -63,8 +63,8 @@ if (WIN32)
     set(PLATFORM_SPECIFIC_LIBS ${GRAPHICS_LIBS} glfw)
 
 elseif (UNIX AND NOT APPLE)
-    file(GLOB_RECURSE VX_PLATFORM_HEADERS src/Window/Linux/*.h)
-    file(GLOB_RECURSE VX_PLATFORM_SOURCES src/Window/Linux/*.cpp)
+    file(GLOB_RECURSE VX_PLATFORM_HEADERS src/Window/GLFW/*.h)
+    file(GLOB_RECURSE VX_PLATFORM_SOURCES src/Window/GLFW/*.cpp)
 
     find_package(OpenGL REQUIRED) # OpenGL
     set(GRAPHICS_LIB_INCLUDES ${OPENGL_INCLUDE_DIR} deps/glad/include)
