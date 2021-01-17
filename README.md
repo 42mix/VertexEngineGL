@@ -1,4 +1,7 @@
-# Vertex Engine
+<p align="center">
+    <img src="https://raw.githubusercontent.com/42mix/VertexEngineGL/master/assets/VertexEngineBW.png" height="156px">
+    <h1 align="center">Vertex Engine</h1>
+</p>
 
 [![build](https://github.com/VertexEngine/VertexEngine/workflows/build/badge.svg)](#)
 [![License](https://img.shields.io/github/license/42mix/VertexEngineGL?color=blue)](https://github.com/42mix/VertexEngineGL/blob/master/LICENSE)
