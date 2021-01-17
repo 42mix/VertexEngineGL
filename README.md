@@ -6,7 +6,7 @@
 A powerful OpenGL based game engine, currently in early development.
 
 ## Why another game engine?
-Well, this project is mainly for learning purposes. The aim is to make a powerful, flexible and lightweight game engine, since I haven't really found any exisitng Engines that I like. This fork aims to get OpenGL on [VertexEngine](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) completely.
+This project is mainly for learning purposes.  This fork aims to get OpenGL on [VertexEngine](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) completely.
 
 ## Build
 Pre-made build scripts are provided for Windows and Linux in the `scripts` directory. The build scripts **must be run from within that directory.**
