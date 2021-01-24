@@ -113,6 +113,7 @@ target_link_libraries(Vertex PUBLIC
         ${PLATFORM_SPECIFIC_LIBS}
         glad
         imgui
+        ${CMAKE_DL_LIBS}
         )
 
 set_target_properties(Vertex PROPERTIES POSITION_INDEPENDENT_CODE ON)

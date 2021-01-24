@@ -10,3 +10,6 @@
 [submodule "Vertex/deps/glfw"]
 	path = Vertex/deps/glfw
 	url = https://github.com/glfw/glfw
+[submodule "Vertex/deps/glad"]
+	path = Vertex/deps/glad
+	url = https://github.com/Dav1dde/glad.git
