@@ -182,17 +182,9 @@ namespace Vertex
 
         glfwSetErrorCallback(GLFWErrorCallback);
 
-#if defined(VX_RENDER_API_VULKAN)
-
-        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
-#else
-
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-
-#endif
 
         m_Window = glfwCreateWindow((int)m_Data.width, (int)m_Data.height, m_Data.title, nullptr, nullptr);
 

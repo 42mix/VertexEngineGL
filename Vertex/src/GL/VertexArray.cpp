@@ -1,5 +1,6 @@
 #include "VertexArray.h"
 
+// Include all implementations
 #include "OpenGL/OpenGLVertexArray.h"
 
 namespace Vertex

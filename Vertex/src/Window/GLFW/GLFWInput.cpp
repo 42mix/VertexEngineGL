@@ -1,8 +1,12 @@
 #include "GLFWInput.h"
 
+// #ifdef USE_GLFW
+//     #define InputIsMouseButtonPressed(...) GLFW_IsMouseButtonPressedImpl(__VA_ARGS__)
+// #else
+// #endif
+
 namespace Vertex
 {
-
     bool GLFWInput::IsKeyPressedImpl(int key)
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
@@ -42,5 +46,4 @@ namespace Vertex
 
         return (float)ypos;
     }
-
 }

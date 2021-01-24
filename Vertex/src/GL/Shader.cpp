@@ -1,8 +1,9 @@
 #include "Shader.h"
 
-#include "OpenGL/OpenGLShader.h"
-
 #include <fstream>
+
+// Include all implementations
+#include "OpenGL/OpenGLShader.h"
 
 namespace Vertex
 {

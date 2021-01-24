@@ -25,12 +25,10 @@ namespace Vertex
 
         inline void SetVSync(bool conf) override
         {
-#if defined(VX_RENDER_API_VULKAN)
-
-#else
-            glfwSwapInterval((conf) ? 1 : 0);
-#endif
-            m_Data.v_sync = conf;
+            // glfwSwapInterval((conf) ? 1 : 0);
+            // m_Data.v_sync = conf;
+            glfwSwapInterval(0);
+            m_Data.v_sync = false;
         }
 
         inline bool IsVSync() const override { return m_Data.v_sync; }

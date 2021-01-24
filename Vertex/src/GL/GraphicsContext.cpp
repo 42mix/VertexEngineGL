@@ -1,5 +1,6 @@
 #include "GraphicsContext.h"
 
+// Include all implementations
 #include "OpenGL/OpenGLContext.h"
 
 namespace Vertex

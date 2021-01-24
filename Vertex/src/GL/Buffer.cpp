@@ -1,5 +1,6 @@
 #include "Buffer.h"
 
+// Include all implementations
 #include "OpenGL/OpenGLBuffer.h"
 
 namespace Vertex

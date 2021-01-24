@@ -1,5 +1,6 @@
 #include "Texture.h"
 
+// Include all implementations
 #include "OpenGL/OpenGLTexture.h"
 
 namespace Vertex
