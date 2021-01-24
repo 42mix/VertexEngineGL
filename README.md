@@ -17,16 +17,6 @@ Run the build scripts from within the `scripts` directory. Or run
 $ cmake [dir] && make
 ```
 
-## Features to come
-* Scene system
-* 3D Rendering
-* Visual editor
-* ~~Support for mac, mobile, and consoles~~
-* ~~Support for Vulkan, and Metal~~
-
-## Contributing
-~~Please read [CONTRIBUTING](https://github.com/VertexEngine/VertexEngine/blob/master/.github/CONTRIBUTING.md) before opening a Pull Request.~~
-
 ## Authors
 * [42mix](https://github.com/42mix) - Initial work
 * [Dinu Blanovschi](https://github.com/dblanovschi)
